@@ -1,0 +1,137 @@
+VstoneMagic Build&Execute Message Log
+BuildStart time:2016/09/02 12:24:10
+ビルドの更新がありません。
+
+
+jarファイルの作成
+
+
+jarファイルの更新はありません
+
+
+送信ファイルの上書き確認
+
+スタートアップアプリケーションの停止
+echo "STOP_STARTUP" > /home/vstone/vstonemagic/menu.fifoロボットのSFTPへ接続します。
+192.168.128.102@pi
+..
+
+
+ファイルの転送
+ロボットにファイルを転送します。
+Connect to 192.168.128.102@pi...接続しました。
+ファイルの転送を開始します。
+No send:'C:\Users\STC-intern-1\SotaMessengerSample\lib\tyrus-standalone-client-1.13.jar'
+No send:'C:\Users\STC-intern-1\sota_VM\client\sotaimple\SotaWebsocketTalker\bin\SotaWebsocketTalker.jar'
+
+
+アプリケーション登録用のアーカイブファイルを作成
+..
+ビルドが完了しました。
+
+
+jarファイルの実行
+ロボットのSSHへ接続します。
+192.168.128.102@pi
+Linux raspberrypi 3.18.14-v7+ #792 SMP PREEMPT Sat May 23 16:19:32 BST 2015 armv7l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Sep  2 12:23:35 2016 from 192.168.128.100
+java -Dfile.encoding=UTF8 -Djava.library.path=/usr/local/share/OpenCV/java/  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8765 -jar SotaWebsocketTalker.jar 2>&1 &ファイルの転送が完了しました。java -Dfile.encoding=UTF8 -Djava.library.path=/usr/local/share/OpenCV/java/  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8765 -jar SotaWebsocketTalker.jar 2>&1 &
+pi@raspberrypi:~$ java -Dfile.encoding=UTF8 -Djava.library.path=/usr/local/share/OpenCV/java/  -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8765 -jar SotaWebsocketTalker.jar 2>&1 &
+[1] 17420
+pi@raspberrypi:~$ デバッグの準備ができました。
+
+jdbの実行
+デバッガを起動します。
+C:\Program Files\VstoneMagic\jdk\bin\jdb.exe -connect com.sun.jdi.SocketAttach:hostname=192.168.128.102,port=8765
+Listening for transport dt_socket at address: 8765
+捕捉されないjava.lang.Throwableの設定遅延した捕捉されないjava.lang.Throwableの設定jdbの初期化中...デバッグ実行のスタンバイができました。
+> VMが開始されました: 現在のコール・スタックにフレームがありません[Info][SpeechRecog]SpeechRecog
+[Info][CRoboCamera]class jp.vstone.RobotLib.CSotaMotion
+[Info][CRobotSock]Connected server
+[Info][CRobotMotion]MasterCtrlPeriod 16666
+[Info][MotionAsSotaWish][Say][scene:talk]セッションが開いたよ
+[Info][TextToSpeechSota][TTS_USE_CACHE] /var/sota/tts//1472694623558.wav
+java.io.FileNotFoundException: /home/vstone/vstonemagic/app/jar/app.properties (No such file or directory)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:131)
+	at jp.vstone.RobotLib.CRobotUtil.getTimeZone(CRobotUtil.java:114)
+	at jp.vstone.sotatalk.TextToSpeechSota.postjson(TextToSpeechSota.java:765)
+	at jp.vstone.sotatalk.TextToSpeechSota.postlog(TextToSpeechSota.java:732)
+	at jp.vstone.sotatalk.TextToSpeechSota.getTTSFile(TextToSpeechSota.java:236)
+	at jp.vstone.sotatalk.MotionAsSotaWish.Say(MotionAsSotaWish.java:118)
+	at jp.co.mysota.WebsocketMessenger.onOpen(WebsocketMessenger.java:70)
+	at org.glassfish.tyrus.core.TyrusEndpointWrapper.onConnect(TyrusEndpointWrapper.java:774)
+	at org.glassfish.tyrus.core.TyrusWebSocket.onConnect(TyrusWebSocket.java:159)
+	at org.glassfish.tyrus.client.TyrusClientEngine.processUpgradeResponse(TyrusClientEngine.java:577)
+	at org.glassfish.tyrus.client.TyrusClientEngine.handleSwitchProtocol(TyrusClientEngine.java:340)
+	at org.glassfish.tyrus.client.TyrusClientEngine.processResponse(TyrusClientEngine.java:277)
+	at org.glassfish.tyrus.container.grizzly.client.GrizzlyClientFilter.handleHandshake(GrizzlyClientFilter.java:346)
+	at org.glassfish.tyrus.container.grizzly.client.GrizzlyClientFilter.handleRead(GrizzlyClientFilter.java:315)
+	at org.glassfish.grizzly.filterchain.ExecutorResolver$9.execute(ExecutorResolver.java:119)
+	at org.glassfish.grizzly.filterchain.DefaultFilterChain.executeFilter(DefaultFilterChain.java:284)
+	at org.glassfish.grizzly.filterchain.DefaultFilterChain.executeChainPart(DefaultFilterChain.java:201)
+	at org.glassfish.grizzly.filterchain.DefaultFilterChain.execute(DefaultFilterChain.java:133)
+	at org.glassfish.grizzly.filterchain.DefaultFilterChain.process(DefaultFilterChain.java:112)
+	at org.glassfish.grizzly.ProcessorExecutor.execute(ProcessorExecutor.java:77)
+	at org.glassfish.grizzly.nio.transport.TCPNIOTransport.fireIOEvent(TCPNIOTransport.java:526)
+	at org.glassfish.grizzly.strategies.AbstractIOStrategy.fireIOEvent(AbstractIOStrategy.java:112)
+	at org.glassfish.grizzly.strategies.WorkerThreadIOStrategy.run0(WorkerThreadIOStrategy.java:117)
+	at org.glassfish.grizzly.strategies.WorkerThreadIOStrategy.access$100(WorkerThreadIOStrategy.java:56)
+	at org.glassfish.grizzly.strategies.WorkerThreadIOStrategy$WorkerThreadRunnable.run(WorkerThreadIOStrategy.java:137)
+	at org.glassfish.grizzly.threadpool.AbstractThreadPool$Worker.doWork(AbstractThreadPool.java:591)
+	at org.glassfish.grizzly.threadpool.AbstractThreadPool$Worker.run(AbstractThreadPool.java:571)
+	at java.lang.Thread.run(Thread.java:744)
+[Info][CPlayWave]Play /var/sota/tts//1472694623558.wav
+[Info][MotionAsSotaWish]play 1937
+[Info][MotionAsSotaWish][play][talk] [1537sec]
+[Info][MotionAsSotaWish][Say][scene:talk]先生に何か聞きたいことはない？
+[Info][TextToSpeechSota][TTS_USE_CACHE] /var/sota/tts//1472545973742.wav
+[Info][CPlayWave]Play /var/sota/tts//1472545973742.wav
+[Info][MotionAsSotaWish]play 3117
+[Info][MotionAsSotaWish][play][talk] [2717sec]
+[Info][SpeechRecog][getRecognition][Score:0.7418653964996338]笑
+[Info][SpeechRecog][getRecognition][Score:0.7331828474998474]ａｎｙ
+[Info][SpeechRecog][getRecognition][Score:0.6174976825714111]〇二
+[Info][SpeechRecog][getRecognition][Score:0.6251416206359863]ａ二
+[Info][SpeechRecog][getRecognition][Score:0.7288802862167358]エニー
+[Info][SpeechRecog][getRecognition][Score:0.7530956864356995]に
+[Info][SpeechRecog][getRecognition][Score:0.8278807401657104]二
+[Info][SpeechRecog][getRecognition][Score:0.7280182838439941]ｅｍｉ
+[Info][MotionAsSotaWish][Say][scene:talk]もう一度お願いします
+[Info][TextToSpeechSota][TTS_USE_CACHE] /var/sota/tts//1472781410343.wav
+[Info][CPlayWave]Play /var/sota/tts//1472781410343.wav
+[Info][MotionAsSotaWish]play 2023
+[Info][MotionAsSotaWish][play][talk] [1623sec]
+[Info][SpeechRecog][getRecognition][Score:0.8094909985860188]性格を教えて
+[Info][SpeechRecog][getRecognition][Score:0.7804660002390543]性格教えて
+[Info][SpeechRecog][getRecognition][Score:0.7522176106770833]正確教えて
+[Info][SpeechRecog][getRecognition][Score:0.7502241134643555]声楽教えて
+[Info][SpeechRecog][getRecognition][Score:0.7715234756469727]青学を教えて
+[Info][SpeechRecog][getRecognition][Score:0.7424983978271484]青学教えて
+[Info][SpeechRecog][getRecognition][Score:0.7812426884969075]正確を教えて
+[Info][SpeechRecog][getRecognition][Score:0.7792491912841797]声楽を教えて
+[Info][SpeechRecog][getRecognition][Score:0.7762414614359537]数学を教えて
+[Info][SpeechRecog][getRecognition][Score:0.7472163836161295]数学教えて
+[Info][MotionAsSotaWish][Say][scene:talk]もう一度お願いします
+[Info][TextToSpeechSota][TTS_USE_CACHE] /var/sota/tts//1472781410343.wav
+[Info][CPlayWave]Play /var/sota/tts//1472781410343.wav
+[Info][MotionAsSotaWish]play 2023
+[Info][MotionAsSotaWish][play][talk] [1623sec]
+
+kill ` jps|grep "^[0-9]\+ jar" |awk '{print $1}'`中断します。
+
+pi@raspberrypi:~$ 
+exitpi@raspberrypi:~$ kmain[1] > ill ` jpListening for transport dt_socket at address: 8765
+s|grep "^[0-9]\+ jar" |awk '{print $1}'`
+exit
+
+ロボットとの通信を切断しました。
+failed in sendDebugCommand:quit
+StandardIn がリダイレクトされていません。
